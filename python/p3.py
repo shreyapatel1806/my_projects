@@ -39,7 +39,7 @@ asyncio.run(main())
 
 
 devider("Python", 3)
-from pydantic import BaseModel
+from pydentic import BaseModel
 class Customer(BaseModel):
     name: str
     age: int
@@ -103,4 +103,22 @@ test_invalid_price()
 devider("Python", 7)
 import logging
 logging.basicConfig(level=logging.INFO)
-logging.info("Order processed successfully")
+logging.debug("Customer ID = 101")
+logging.info("Order created successfully")
+logging.warning("Payment retry required")
+logging.error("Payment processing failed")
+logging.critical("Database unavailable")
+
+
+
+devider("Python", 8)
+import logging
+
+logging.basicConfig(level=logging.INFO)
+
+try:
+    age = input("Enter age: ")
+    age = int(age)
+    print("Age:", age)
+except ValueError:
+    logging.error("failed to convert age")
