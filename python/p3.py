@@ -52,4 +52,50 @@ customer = Customer(
 )
 
 print(customer)
-print("\n")
+
+
+
+devider("Python", 4)
+from pydantic import BaseModel, Field
+class Order(BaseModel):
+   customer_id: int
+   amount: float = Field(gt=0)
+print(Order(customer_id=101 , amount = 500))
+
+
+
+devider("Python", 5)
+def calculate_total(price: float, quantity: int) -> float:
+    return price * quantity
+def test_calculate_total():
+    result = calculate_total(100, 3)
+    assert result == 300
+    print("Test passed: calculate_total(100, 3) == 300")
+
+test_calculate_total()
+
+
+
+devider("Python", 6)
+import pytest 
+
+def calculate_discount(price: float, discount: float) -> float:
+    if price < 0:
+        raise ValueError("Price must be non-negative")
+    if discount < 0 or discount > 100:
+        raise ValueError("Discount must be between 0 and 100")      
+
+    return price - (price * discount / 100)
+
+def test_discount():
+    assert calculate_discount(100, 10) == 90
+    print("Test passed: calculate_discount(100, 10) == 90")
+
+def test_invalid_price():
+    with pytest.raises(ValueError):
+        calculate_discount(-100, 10)
+    print("Test passed: calculate_discount(-100, 10) raises ValueError")  
+
+
+test_discount()
+test_invalid_price()
