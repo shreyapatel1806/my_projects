@@ -95,7 +95,12 @@ def test_invalid_price():
     with pytest.raises(ValueError):
         calculate_discount(-100, 10)
     print("Test passed: calculate_discount(-100, 10) raises ValueError")  
-
-
 test_discount()
 test_invalid_price()
+
+
+
+devider("Python", 7)
+import logging
+logging.basicConfig(level=logging.INFO)
+logging.info("Order processed successfully")
