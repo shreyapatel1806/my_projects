@@ -39,7 +39,7 @@ asyncio.run(main())
 
 
 devider("Python", 3)
-from pydentic import BaseModel
+from pydantic import BaseModel
 class Customer(BaseModel):
     name: str
     age: int
@@ -122,3 +122,22 @@ try:
     print("Age:", age)
 except ValueError:
     logging.error("failed to convert age")
+
+
+
+devider("Python", 9)
+import asyncio
+async def get_customer():
+    await asyncio.sleep(2)
+    return "Amit"
+async def get_orders():
+    await asyncio.sleep(3)
+    return "Orders"
+async def main():
+    customer, orders = await asyncio.gather(
+        get_customer(),
+        get_orders()
+    )
+    print(customer)
+    print(orders)
+asyncio.run(main())
