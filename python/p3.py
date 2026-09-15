@@ -141,3 +141,184 @@ async def main():
     print(customer)
     print(orders)
 asyncio.run(main())
+
+
+
+devider("Python", 10)
+import asyncio
+
+
+async def get_customer():
+    await asyncio.sleep(2)
+    return "Customer data"
+
+
+async def get_orders():
+    await asyncio.sleep(3)
+    return "Order data"
+
+
+async def main():
+    customer, orders = await asyncio.gather(
+        get_customer(),
+        get_orders()
+    )
+
+    print(customer)
+    print(orders)
+
+
+asyncio.run(main())
+
+
+devider("Python", 11)
+import asyncio
+
+async def get_customer():
+    await asyncio.sleep(2)
+    return "Customer data"
+
+async def get_orders():
+    await asyncio.sleep(3)
+    return "Order data"
+
+async def get_payments():
+    await asyncio.sleep(1)
+    return "Payment data"
+
+async def get_inventory():
+    await asyncio.sleep(4)
+    return "Inventory data"
+
+async def load_dashboard():
+    customer, orders, payments, inventory = await asyncio.gather(
+        get_customer(),
+        get_orders(),
+        get_payments(),
+        get_inventory()
+    )
+    print(customer)
+    print(orders)   
+    print(payments)
+    print(inventory)
+    print("Dashboard loaded successfully")
+
+    # return {
+    #     "customer": customer,
+    #     "orders": orders,
+    #     "payments": payments,
+    #     "inventory": inventory
+    # }
+
+
+
+asyncio.run(load_dashboard())
+
+
+
+devider("Python", 12)
+import asyncio
+
+
+async def get_customer():
+    await asyncio.sleep(1)
+    raise ValueError("Customer service failed")
+
+
+async def main():
+    try:
+        customer = await get_customer()
+        print(customer)
+
+    except ValueError as error:
+        print(f"Error: {error}")
+
+
+asyncio.run(main())
+
+
+
+devider("Python", 13)
+import asyncio
+
+
+async def call_service():
+    await asyncio.sleep(5)
+    return "Success"
+
+
+async def main():
+    try:
+        result = await asyncio.wait_for(
+            call_service(),
+            timeout=2
+        )
+        print(result)
+
+    except asyncio.TimeoutError:
+        print("Service took too long")
+
+
+asyncio.run(main())
+
+
+
+devider("Python", 14)
+import asyncio
+async def call_api():
+    await asyncio.sleep(1)
+    return "Success"
+async def call_with_retry():
+    for attempt in range(3):
+        try:
+            return await call_api()
+        
+        except Exception:
+            if attempt == 3:
+                raise
+            await asyncio.sleep(1)
+
+asyncio.run(call_with_retry())
+
+
+
+
+
+devider("Python", 15)
+import asyncio
+async def async_http_request(url):
+    await asyncio.sleep(2)
+    return f"Response from {url}"
+
+async def fetch_customer():
+    response = await async_http_request(
+        "https://www.youtube.com/"
+    )
+
+    # return response
+    print(response)
+
+
+asyncio.run(fetch_customer())
+
+
+
+devider("Python", 16)
+
+import asyncio
+async def task_a():
+    await asyncio.sleep(5)
+    print("A done")
+
+
+async def task_b():
+    await asyncio.sleep(1)
+    print("B done")
+
+async def main():
+    await asyncio.gather(
+        task_a(),
+        task_b()
+    )
+
+asyncio.run(main())
